@@ -258,7 +258,7 @@ function ajaxFileUploads(imageid,ob) {
             		var spValueSort = $(this).find("[name=spValueSort]").val();
             		//判断是否有图片
             		if(spFormat == "1"){
-            			var spValueImage = $(this).find(":hidden").val();
+            			var spValueImage = $(this).find("[name=spValueImage]").find(":hidden").val();
            				if(tag!=false && (spValueName==null||spValueName==""||spValueSort==null||spValueSort==""||isNaN(spValueSort))){
            					/* alert("规格值输入不合法"); */
            					tag = false;

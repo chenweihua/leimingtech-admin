@@ -410,7 +410,9 @@ $(function(){
 							        	<input type="checkbox" groupId="group_${sps_index}" name="specCheckBox" value="${svl.spValueId}" spValueName="${svl.spValueName}" class="sp_val" spFormat="${sps.spFormat}" >
 							        </span>
 							        <#if sps.spFormat==1>
-							        	<span class="img"><img src="${imageServer}/${svl.spValueImage}" style="height: 17px;width: 17px;"></span>
+							        	<span class="img" name="customSpecImage" imageSrc ="${svl.spValueImage}" spValueId = "${svl.spValueId}" imageState="1">
+							        		<img src="${imgServer}/${svl.spValueImage}" style="height: 17px;width: 17px;">
+							        	</span>
 							        </#if>
 							        <span nctype="pv_name" class="pvname">${svl.spValueName}</span>
 					          	</li>
@@ -433,7 +435,7 @@ $(function(){
 			                <tr style="display:none;" nctype="file_tr" value="${svl.spValueId}">
 				                <td>
 				                	<span class="img">
-				                		<img src="${imageServer}/${svl.spValueImage}" style="height: 17px;width: 17px;">
+				                		<img src="${imgServer}/${svl.spValueImage}" style="height: 17px;width: 17px;">
 				                	</span>
 				                	<span class="pvname" nctype="pv_name">${svl.spValueName}</span>
 				                	<input type="hidden" value=""/>
