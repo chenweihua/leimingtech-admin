@@ -67,7 +67,7 @@
 		                	<input type="text" name="spValueSort" placeholder="排序" value="${sv.spValueSort}" />
 		                	<input type="text" name="spValueName" placeholder="规格值" value="${sv.spValueName}" />
 		                	<p href="javascript:void(0);" style="display: none;" name="spValueImage">
-		                		<input type="file" id="myBlogImage${sv_index}" name="files" class="file" multiple="multiple" onChange="ajaxFileUploads('myBlogImage${sv_index}',this);" />
+		                		<input type="file" id="myBlogImage${sv_index}" name="files" class="file" multiple="multiple" onClick = "changeColor(this)" onChange="ajaxFileUploads('myBlogImage${sv_index}',this);" />
 								<#if sv.spValueImage??&&sv.spValueImage!=''>
 									<img style='width:30px;height:30px' src='${imgServer}/${sv.spValueImage}'/>
 								<#else>
@@ -116,9 +116,19 @@ function initEdit(){
 	specImage++;
 }
 
+function changeColor(ob){
+	var $obj = $(ob);
+	$obj.css('color','red');
+}
+
+function clearColor(ob){
+	var $obj = $(ob);
+	$obj.css('color','')
+}
 
 //上传规格图片
 function ajaxFileUploads(imageid,ob) {
+	clearColor(ob);
 	var $obj = $(ob);
 	var $img = $obj.next();
 	var $hid = $obj.next().next();
@@ -180,7 +190,7 @@ function ajaxFileUploads(imageid,ob) {
         	                	'<input type="text" name="spValueSort" placeholder="排序"/> '+
         	                	'<input type="text" name="spValueName" placeholder="规格值"/>'+
         	                	'<p href="javascript:void(0);" name="spValueImage">'+
-    		                		'<input type="file" id="'+myBlogImage+'" name="files" class="file" multiple="multiple" onChange="ajaxFileUploads(\''+myBlogImage+'\',this);" />'+
+    		                		'<input type="file" id="'+myBlogImage+'" name="files" class="file" multiple="multiple" onClick = "changeColor(this)" onChange="ajaxFileUploads(\''+myBlogImage+'\',this);" />'+
     								'<img style="width:30px;height:30px" src="${base}/res/images/picture.gif"/>'+
     								'<input type="hidden"/>'+
     							'</p>'+
@@ -195,7 +205,7 @@ function ajaxFileUploads(imageid,ob) {
         	                	'<input type="text" name="spValueSort" placeholder="排序"/> '+
         	                	'<input type="text" name="spValueName" placeholder="规格值"/>'+
         	                	'<p href="javascript:void(0);" style="display: none;" name="spValueImage">'+
-    		                		'<input type="file" id="'+myBlogImage+'" name="files" class="file" multiple="multiple" onChange="ajaxFileUploads(\''+myBlogImage+'\',this);" />'+
+    		                		'<input type="file" id="'+myBlogImage+'" name="files" class="file" multiple="multiple" onClick = "changeColor(this)" onChange="ajaxFileUploads(\''+myBlogImage+'\',this);" />'+
     								'<img style="width:30px;height:30px" src="${base}/res/images/picture.gif"/>'+
     								'<input type="hidden"/>'+
     							'</p>'+
