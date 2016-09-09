@@ -182,9 +182,11 @@
 		          <dt>
 		            <input type="hidden" name="sp_name[${sps_index}]" value="${sps.spName}" />
 		            ${sps.spName}：
+		            <p><a href="javascript:showSpec(${sps.spId})">增加规格</a></p>
+		            
 		          </dt>
 		          <dd nctype="sp_group_val">
-			          <ul class="spec">
+			          <ul class="spec" id = "spec${sps.spId}">
 				          <#if sps.specValueList??>
 					          <#list sps.specValueList as svl>
 					          		<li>
@@ -507,6 +509,46 @@
   </div>
 </div>
 
+<!-- 增加自定义属性的相关代码-->
+    <style type="text/css">
+	    #addSpecName
+	    {
+	        display:none;
+	        border:1px solid rgb(91, 156, 229);
+	        position:absolute;/*让节点脱离文档流,我的理解就是,从页面上浮出来,不再按照文档其它内容布局*/
+	        top:24%;/*节点脱离了文档流,如果设置位置需要用top和left,right,bottom定位*/
+	        left:24%;
+	        z-index:2;/*个人理解为层级关系,由于这个节点要在顶部显示,所以这个值比其余节点的都大*/
+	        background: white;
+	    }
+	    #Specover
+	    {
+	        width: 100%;
+	        height: 100%;
+	        opacity:0.8;/*设置背景色透明度,1为完全不透明,IE需要使用filter:alpha(opacity=80);*/
+	        filter:alpha(opacity=80);
+	        display: none;
+	        position:absolute;
+	        top:0;
+	        left:0;
+	        z-index:1;
+	        background: silver;
+	    }
+    </style>
+    
+  <div id="addSpecName">	  
+		<p  style="display:none"  ><a href="javascript:addSpec()">增加规格</a> <input type="text" name="" style="display:none" /> </p>
+		<div style ="height: 140px;width: 300px;" >
+		  <div id="title" style="cursor:move">
+		  </div>
+		  <div  style="margin: 20px;" >属性名 <input type ="text" name = "newspecname" style="width: 75%;"></input></div>
+		  <div style="margin: 20px;"  ><button  style="line-height: 20px;margin-left: 40px;" onclick="addSpec()">确定</button>  <button  style="line-height: 20px;margin-left: 80px;" onclick="hideSpec()">取消</button></div>
+		</div> 
+
+  </div>
+  <div id="Specover"></div>
+
+
 <script type="text/javascript">
 var APP_BASE = '${base}';  // 常量
 var SITE_URL = "${imgServer}";
@@ -584,7 +626,6 @@ $(document).ready(function(){
 	init_area('${goods.provinceId}', '${goods.cityId}');
 	// 初始化,上架下架
 	initGoodsStatus();
-	
     /**
      * 当规格都至少选中一个的时候,增加一个节点,用来让用户控制商品的库存,以及货号
      * 这一段js是用来控制规格,以及规格的图片上传,以及选中规格后库存的控制

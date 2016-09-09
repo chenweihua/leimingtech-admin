@@ -1,15 +1,21 @@
 package com.leimingtech.admin.module.goods.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -147,4 +153,30 @@ public class SpecAction {
         model.addAttribute("msg", "删除成功");
         return Constants.MSG_URL;
     }
+    
+    /**
+     * 插入属性
+     * @return
+     */
+    @RequiresPermissions("sys:spec:edit")
+    @RequestMapping("/insertSpeVal")
+    public @ResponseBody Map<String, Object>  insertSpeVal(@RequestParam int spId,@RequestParam String spValueName){ 
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	try{
+    		SpecValue specValue = new SpecValue();
+    		specValue.setSpValueName(spValueName);
+    		specValue.setSpId(spId);
+    		specValue.setSpValueImage("");
+    		specValue.setSpValueSort(0);
+    		specService.insert(specValue);
+	        map.put("success",true);//商品名称
+	        map.put("data", specValue);
+	        return map;
+		} catch (Exception e) {
+	        map.put("success",false);//商品名称
+	        return map;
+		}
+    }
+    
+    
 }

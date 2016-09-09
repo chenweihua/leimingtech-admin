@@ -1031,3 +1031,67 @@ var initGoodsStatus = function(){
 };
 
 
+//增加自定义属性界面的相关代码
+var x_max = $(window).width();
+var y_max = $(window).height();
+var div_width = $("#addSpecName").width() + 20;//20是边框
+var div_height = $("#addSpecName").height() + 20;
+var _x_max = x_max - div_width;//最大水平位置
+var _y_max = y_max - div_height;//最大垂直位置
+
+var showSpec = function(spId)
+{
+    var x = (x_max - div_width) / 2;//水平居中
+    var y = (y_max - div_height) / 2;//垂直居中
+    $("#addSpecName").css({"left": x + 'px',"top": y + 'px'});//设置初始位置,防止移动后关闭再打开位置在关闭时的位置
+    $("#addSpecName").css("display","block");
+    $("#Specover").css("display","block");
+    $("#addSpecName").attr("spIdValue",spId);
+}
+var hideSpec = function()
+{
+    $("#addSpecName").css("display","none");
+    $("#Specover").css("display","none");
+}
+
+var addSpec = function(){
+	//spId=	$(".sp_val").attr("value");//规格内码ID
+	spId= $("#addSpecName").attr("spIdValue"); //规格内码ID
+	spName =$("input[name='newspecname']").val();
+	datas = {
+		"spId" : spId,
+		"spValueName" : spName
+		}
+	var url = "/leimingtech-admin/goods/spec/insertSpeVal";
+	$.post(url,datas,function(data){
+		if (data.success)
+		{	
+			 hideSpec();
+			 
+			 layer.msg('增加成功', {icon: 1});
+			//增加成功
+			addSpectList(0,data.data.spValueId,data.data.spValueName);
+		}else{
+			hideSpec();
+			 layer.msg('增加失败', {icon: 2});
+			//增加失败
+		}
+	});
+};
+	
+var addSpectList = function(index,spid,specname){
+	var  htmlSpec = "";
+	htmlSpec	+= '	<li> ';
+  	htmlSpec	+= '	   	<span nctype="input_checkbox" class="checkbox"> ';
+  	htmlSpec	+= '		<input type="checkbox" checked="checked" groupId="group_0" name="specCheckBox" value="' + spid +'" spValueName="' + specname + '" class="sp_val" spFormat="0" > ';
+  	htmlSpec	+= '		</span> ';
+  	htmlSpec	+= '		<span nctype="pv_name" class="pvname"> ';
+  	htmlSpec	+= 			specname ;
+  	htmlSpec	+= '		</span> ';
+  	htmlSpec	+= '	</li> ';
+//	<ul class="spec">
+  	var spIpValue= $("#addSpecName").attr("spIdValue");//规格类型
+  	$("#spec"+spIpValue).append(htmlSpec);
+  	specGroupFun();//
+};
+
