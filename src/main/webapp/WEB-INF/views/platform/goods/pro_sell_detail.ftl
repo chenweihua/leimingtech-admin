@@ -1377,7 +1377,7 @@ $("[name=isApplyPostage]").live("click",function(){
 						var tr = '<tr name="skuDo" spId='+arr[s].spId+' spName='+arr[s].spName+' specValueName='+arr[s].specValueName+' specValueId="'+arr[s].specValueId+'" value="'+arr[s].specValueId+'">'+
 						str+
 		    			'<td><input class="text" name="price" type="text"/></td>'+
-		    			'<td><input class="text" name="sku" type="text" value="0"/></td>'+
+		    			'<td><input class="text" name="sku" type="text" value="100"/></td>'+
 		    			'<td><input class="text" name="huohao" type="text"/></td>'+
 		    			'<td><input class="text" name="isopen" type="checkbox"/>开启规格</td>'+
 	    				'</tr>';
