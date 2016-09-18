@@ -184,7 +184,7 @@
             </td>
         </tr>
         <tr>
-            <th>商品信息</th>
+            <th>商品信息2222</th>
         </tr>
         <tr>
             <td><table class="table tb-type2 goods ">
@@ -199,7 +199,13 @@
                 <#list order.orderGoodsList as goods>
                     <tr>
                         <td class="w60 picture"><div class="size-56x56"><span class="thumb size-56x56"><i></i><a href="javascript:;" target="_blank"><img src="${imgServer}${goods.goodsImage}" onload="javascript:DrawImage(this,60,60);" /> </a></span></div></td>
-                        <td class="w50pre"><p><a href="${frontServer}/product/detail?id=${goods.goodsId}" target="_blank">${goods.goodsName}</a></p></td>
+                        <td class="w50pre">
+		                    <dl class="cart-goods-info">
+		    					<dt><p><a href="${frontServer}/product/detail?id=${goods.goodsId}" target="_blank">${goods.goodsName}</a></p></dt>
+		    					<dd class="cart-goods-info-spec" style="color: #999">${goods.specInfo}</dd>
+		  					</dl>
+                        </td>
+                        
                         <td class="w96 align-center">
                         	<span class="red_common">￥
                         		<script type="text/javascript">
