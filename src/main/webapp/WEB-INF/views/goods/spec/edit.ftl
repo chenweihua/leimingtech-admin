@@ -248,7 +248,7 @@ function ajaxFileUploads(imageid,ob) {
             rules : {
                 spName: {
                     required : true,
-                    maxlength: 30,
+                    maxlength: 50,
                     minlength: 1
                 },
                 spSort: {
@@ -263,15 +263,15 @@ function ajaxFileUploads(imageid,ob) {
                 },
                 spValueName: {
                     required : true,
-                    maxlength: 30,
+                    maxlength: 50,
                     minlength: 1
                 }
             },
             messages : {
                 spName : {
                     required : '请填写规格名称',
-                    maxlength: '规格名称长度应在1-30个字符之间',
-                    minlength: '规格名称长度应在1-30个字符之间'
+                    maxlength: '规格名称长度应在1-50个字符之间',
+                    minlength: '规格名称长度应在1-50个字符之间'
                 },
                 spSort: {
                     required : '请填写规格排序',
@@ -285,8 +285,8 @@ function ajaxFileUploads(imageid,ob) {
                 },
                 spValueName: {
                     required : '请填写规格值',
-                    maxlength: '规格名称长度应在1-30个字符之间',
-                    minlength: '规格名称长度应在1-30个字符之间'
+                    maxlength: '规格名称长度应在1-50个字符之间',
+                    minlength: '规格名称长度应在1-50个字符之间'
                 }
             }
         });
